@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu menu online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #ff3d00;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .menu button {
+            background-color: #ff3d00;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover {
+            background-color: #d32f2f;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        .search-bar button {
+            background-color: #ff3d00;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        .search-bar button:hover {
+            background-color: #d32f2f;
+        }
+        .stores {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .store {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: calc(50% - 40px);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .store img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .store h3 {
+            padding: 10px 0;
+            margin: 0;
+        }
+        .store p {
+            padding: 0 10px 10px;
+            margin: 0;
+        }
+        .store:hover {
+            transform: scale(1.05);
+        }
+        .store a {
+            display: block;
+            padding: 10px;
+            background-color: #ff3d00;
+            color: white;
+            text-decoration: none;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        .store a:hover {
+            background-color: #d32f2f;
+        }
+        @media (min-width: 600px) {
+            .store {
+                width: calc(33.333% - 40px);
+            }
+        }
+        .ads-popup, .ads-footer {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+        }
+        .ads-popup {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        .ads-footer {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .ads-footer button, .ads-popup button {
+            background-color: #ff3d00;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        .ads-footer button:hover, .ads-popup button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Meu menu Campo Mourão</h1>
+    </div>
+
+    <div class="menu">
+        <button onclick="filterStores('all')">Ver Todas</button>
+        <button onclick="filterStores('pizza')">Pizza</button>
+        <button onclick="filterStores('sushi')">Sushi</button>
+        <button onclick="filterStores('burger')">Burger</button>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Pesquisar lojas...">
+        <button onclick="searchStores()">Pesquisar</button>
+    </div>
+
+    <div class="stores">
+        <div class="store" data-category="pizza">
+            <img src="https://via.placeholder.com/200" alt="Pizza Store">
+            <h3>Pizza Place</h3>
+            <p>Melhor pizza da cidade!</p>
+            <a href="#" onclick="handleClick(event, 'https://example.com/pizza')">Visitar Loja</a>
+        </div>
+        <div class="store" data-category="sushi">
+            <img src="https://via.placeholder.com/200" alt="Sushi Store">
+            <h3>Sushi House</h3>
+            <p>Delicioso sushi fresco!</p>
+            <a href="#" onclick="handleClick(event, 'https://example.com/sushi')">Visitar Loja</a>
+        </div>
+        <div class="store" data-category="burger">
+            <img src="https://via.placeholder.com/200" alt="Burger Store">
+            <h3>Burger Joint</h3>
+            <p>Melhor burger da cidade!</p>
+            <a href="#" onclick="handleClick(event, 'https://example.com/burger')">Visitar Loja</a>
+        </div>
+        <!-- Adicione mais lojas conforme necessário -->
+    </div>
+
+    <div class="ads-popup" id="ads-popup">
+        <p>Este é um anúncio popup.</p>
+        <button onclick="closeAdsPopup()">Fechar anúncio e ir para a loja</button>
+    </div>
+
+    <div class="ads-footer" id="ads-footer">
+        <p>Anúncio flutuante no rodapé.</p>
+        <button onclick="closeAdsFooter()">Fechar</button>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        let redirectUrl = '';
+
+        function filterStores(category) {
+            const stores = document.querySelectorAll('.store');
+            stores.forEach(store => {
+                if (store.getAttribute('data-category') === category || category === 'all') {
+                    store.style.display = 'block';
+                } else {
+                    store.style.display = 'none';
+                }
+            });
+        }
+
+        function searchStores() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const stores = document.querySelectorAll('.store');
+            stores.forEach(store => {
+                const storeName = store.querySelector('h3').innerText.toLowerCase();
+                if (storeName.includes(searchTerm)) {
+                    store.style.display = 'block';
+                } else {
+                    store.style.display = 'none';
+                }
+            });
+        }
+
+        function handleClick(event, url) {
+            event.preventDefault();
+            clickCount++;
+            redirectUrl = url;
+            if (clickCount % 2 === 0) {
+                document.getElementById('ads-popup').style.display = 'block';
+            } else {
+                window.location.href = url;
+            }
+        }
+
+        function closeAdsPopup() {
+            document.getElementById('ads-popup').style.display = 'none';
+            window.location.href = redirectUrl;
+        }
+
+        function closeAdsFooter() {
+            document.getElementById('ads-footer').style.display = 'none';
+        }
+
+        // Exibir todas as lojas por padrão
+        filterStores('all');
+
+        // Mostrar anúncio flutuante no rodapé após 5 segundos
+        setTimeout(() => {
+            document.getElementById('ads-footer').style.display = 'block';
+        }, 5000);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua empresa aqui</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('0.png') center/cover no-repeat;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .top-left-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .top-left-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .top-left-icon i {
+            font-size: 50px;
+            cursor: pointer;
+            color: white; /* Alterado para branco */
+        }
+
+        .icons-container {
+            position: absolute;
+            top: 75%; /* Ajustado para descer um pouco mais */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .icons-container a {
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .icons-container a:hover {
+            transform: scale(1.2);
+        }
+
+        .icons-container i {
+            font-size: 50px;
+            cursor: pointer;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 8px;
+        }
+
+        .popup {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .popup .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://example.com" class="top-left-icon">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="icons-container">
+        <a href="https://example.com/link1"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://example.com/link2"><i class="fab fa-instagram"></i></a>
+        <a href="https://example.com/link3"><i class="fab fa-facebook"></i></a>
+        <a href="https://example.com/link4"><i class="fab fa-snapchat"></i></a>
+    </div>
+
+    <div class="footer">
+        <p>Site criado por Alcione Welter</p>
+    </div>
+
+    <div class="popup" id="popup">
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <p>Clique nos ícones acima para interagir com a empresa...</p>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        setTimeout(showPopup, 3000);
+    </script>
+</body>
+</html>

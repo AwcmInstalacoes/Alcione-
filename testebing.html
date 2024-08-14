@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site Integrado com iFood</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        #showcase {
+            min-height: 400px;
+            background: url('ifood-banner.jpg') no-repeat 0 -400px;
+            text-align: center;
+            color: #fff;
+        }
+        #showcase h1 {
+            margin-top: 100px;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Meu Restaurante</h1>
+        </div>
+    </header>
+    <section id="showcase">
+        <div class="container">
+            <h1>Bem-vindo ao Meu Restaurante</h1>
+            <p>Peça sua comida favorita pelo iFood!</p>
+        </div>
+    </section>
+    <script>
+        // Aqui você pode adicionar a integração com a API do iFood
+        // Exemplo fictício de chamada à API
+        fetch('https://api.ifood.com.br/v1/restaurants')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Erro:', error));
+    </script>
+</body>
+</html>
